@@ -1,38 +1,38 @@
 ﻿using System;
 
-namespace Task_1
+namespace Task_2
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Массив с рандомными элементами");
-            Random numRandom = new Random();
-            int[] firstMassive = new int[10];
-            for (int i = 0; i < firstMassive.Length; i++)
-            {
-                int num1 = numRandom.Next(0, 100);
-                firstMassive[i] = num1;
-            }
-            Console.WriteLine("[{0}]", string.Join(", ", firstMassive));
+            int[] secondMassive = new int[5];
 
-            Console.WriteLine("Введите значения элементов массива");
-            int[] secondMassive = new int[10];
-            for (int i = 0; i < secondMassive.Length; i++)
+            for (int i = 0; i < secondMassive.Length - 1; i++)
             {
-                int num3 = Convert.ToInt32(Console.ReadLine());
-                secondMassive[i] = num3;
+                int num1 = Convert.ToInt32(Console.ReadLine());
+                secondMassive[i] = num1;
             }
-            Console.WriteLine("Массив элементов значение которых ввели с клавиатуры");
             Console.WriteLine("[{0}]", string.Join(", ", secondMassive));
 
-            int[] resultMassive = new int[10];
-            for (int i = 0; i < resultMassive.Length; i++)
+            Console.WriteLine("Введите значение элемента массива");
+            secondMassive[4] = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите позицию в массиве");
+            int k = Convert.ToInt32(Console.ReadLine());
+
+            while (k > secondMassive.Length)
             {
-                resultMassive[i] = firstMassive[i] + secondMassive[i];
+                Console.WriteLine("Длина массива = 5 элементам, введите значение в этом диапозоне");
+                k = Convert.ToInt32(Console.ReadLine());
             }
-            Console.WriteLine("Сумма значений элементов первого и второго массива");
-            Console.WriteLine("[{0}]", string.Join(", ", resultMassive));
+
+            int[] firstMassive = new int[secondMassive.Length];
+
+            for (int i = 0; i < secondMassive.Length; i++)
+            {
+                firstMassive[(i + k) % firstMassive.Length] = secondMassive[i];
+            }
+            Console.WriteLine("[{0}]", string.Join(", ", firstMassive));
         }
     }
 }
